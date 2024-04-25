@@ -1,0 +1,43 @@
+*************************************************************************ALGORITHM**************************************************************************
+
+*step 1* main data structures I used :
+
+	signTable:
+
+		arranges the symblos from type .extern, .data, .entry, .string , .define and gives each property
+		its name and its decimal adress by using the DC (Data Counter) and IC (Instruction counter)
+
+	binaryMap :
+
+		has the codelines arranged in an array with their binary machine code translation
+	
+	codeFile : 
+
+		takes a FILE from the input and makes it to a string array
+
+
+*step 2* pre Assembler & Macro spanning : 
+
+	i went throgh the source file line by line and if i detected a line whom represents a macro i copied the macro data and inserted it into a new 	file 	later i deleted all the lines between the start of the macro decleration and the end and deleted those lines after that i just implemented the macro 	details by insertting the new file lines into the source file from where the macro is
+
+*step 3* firstPass :
+
+	scans the codeFile line by line and detects if the line is dataline or instruction line etc and updates the binaryMap and the signTable as needed
+
+*step 4* secondPass:
+
+	unlike the last time this time we also insert entrey lines into the sign table and sorting the sign table by the Ddecimal order value
+ 
+*step 5* ErrorCheck :
+
+	checks if there are 2 variables with the same name by scanning the sign table and checks for lex errors in the file such as a string having 		the chars ' ", :, [, ] , 1, 2, 3, 4, 5, 6, 7, 8, 9" which are ileagel to use in a string.
+
+*step 6* assembler :
+	
+	goes on and scams each file that was entered converts them into a codeFile struct and does all the steps described before for each file
+
+*step 7* outputs:
+
+	for each file uses the signTable, binaryMap and codeFile to make a ps.ob ehich has every code line in decimal address order and each line includes 	the code line in that decimal adress translated from binary machine code to its encoded value
+	ps.ext for external vars and ps.ent for enternal vars 
+		
